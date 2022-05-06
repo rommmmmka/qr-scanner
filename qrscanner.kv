@@ -6,7 +6,14 @@
         orientation: 'vertical'
         ZBarCam:
             id: cam
+            size_hint: 1, 0.9
             code_types: ZBarSymbol.QRCODE,
+        Button:
+            text: 'Выбрать файл'
+            size_hint_y: 0.1
+            background_color: 'cyan'
+            on_release:
+                app.root.current = 'file_loader'
         TextInput:
             id: text_label
             text: ', '.join([str(symbol.data.decode('UTF-8')) for symbol in cam.symbols])
@@ -14,7 +21,7 @@
             size: 0, 0
             on_text:
                 text = text_label.text
-                root.show_result(text)
+                root.get_result(text)
                 text_label.text = ''
 
 <Results>:
@@ -24,17 +31,36 @@
         Label:
             id: text_label
             text: root.text
-        Button:
-            id: action_btn
-            size_hint_y: 0.2
-            halign: 'center'
-            background_color: 'cyan'
-            on_release:
-                root.action()
-        Button:
-            text: 'Назад'
-            size_hint_y: 0.2
-            halign: 'center'
-            background_color: 'cyan'
-            on_release:
-                app.root.current = 'cam'
+        BoxLayout:
+            size_hint_y: 0.1
+            height: 0
+            Button:
+                id: action_btn
+                background_color: 'cyan'
+                on_release:
+                    root.action()
+            Button:
+                text: 'Назад'
+                background_color: 'cyan'
+                on_release:
+                    app.root.current = 'cam'
+
+<FileLoader>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+        BoxLayout:
+            size_hint_y: 0.1
+            height: 0
+            Button:
+                text: "Открыть"
+                background_color: 'cyan'
+                on_release: root.get_result(filechooser.path, filechooser.selection)
+            Button:
+                text: "Назад"
+                background_color: 'cyan'
+                on_release:
+                    app.root.current = 'cam'
