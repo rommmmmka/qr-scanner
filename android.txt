@@ -1,0 +1,3 @@
+title=QR Scanner
+author=Rommmmmka
+orientation=portrait
