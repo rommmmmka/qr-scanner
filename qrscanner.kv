@@ -16,7 +16,7 @@
                 app.root.current = 'file_loader'
         TextInput:
             id: text_label
-            text: ', '.join([str(symbol.data.decode('UTF-8')) for symbol in cam.symbols])
+            text: '\n'.join([str(result.data.decode('UTF-8')) for result in cam.symbols])
             size_hint: None, None
             size: 0, 0
             on_text:
@@ -31,6 +31,9 @@
         Label:
             id: text_label
             text: root.text
+            text_size: root.width, None
+            size: self.texture_size
+            halign: 'center'
         BoxLayout:
             size_hint_y: 0.1
             height: 0

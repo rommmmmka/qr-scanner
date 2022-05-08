@@ -45,9 +45,12 @@ class Results(Screen):
 class FileLoader(Screen):
 
     def get_result(self, path, file):
-        image = Image.open(os.path.join(path, file[0]))
-        results = pyzbar.decode(image)
-        self.manager.get_screen('results').text = ', '.join([str(symbol.data.decode('UTF-8')) for symbol in results])
+        try:
+            image = Image.open(os.path.join(path, file[0]))
+        except Exception:
+            return
+        results = pyzbar.decode(image, symbols=[pyzbar.ZBarSymbol.QRCODE])
+        self.manager.get_screen('results').text = '\n'.join([str(result.data.decode('UTF-8')) for result in results])
         self.manager.current = 'results'
 
 
