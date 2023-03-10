@@ -1,0 +1,23 @@
+<Results>:
+    BoxLayout:
+        orientation: 'vertical'
+        halign: 'center'
+        Label:
+            id: text_label
+            text: root.text
+            text_size: root.width, None
+            size: self.texture_size
+            halign: 'center'
+        BoxLayout:
+            size_hint_y: 0.1
+            height: 0
+            Button:
+                id: action_btn
+                background_color: 'cyan'
+                on_release:
+                    root.action()
+            Button:
+                text: 'Назад'
+                background_color: 'cyan'
+                on_release:
+                    app.root.current = 'cam'

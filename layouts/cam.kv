@@ -1,0 +1,25 @@
+#:import ZBarCam kivy_garden.zbarcam.ZBarCam
+#:import ZBarSymbol pyzbar.pyzbar.ZBarSymbol
+
+<Cam>:
+    BoxLayout:
+        orientation: 'vertical'
+        ZBarCam:
+            id: cam
+            size_hint: 1, 0.9
+            code_types: ZBarSymbol.QRCODE,
+        Button:
+            text: 'Выбрать файл'
+            size_hint_y: 0.1
+            background_color: 'cyan'
+            on_release:
+                app.root.current = 'file_loader'
+        TextInput:
+            id: text_label
+            text: '\n'.join([str(result.data.decode('UTF-8')) for result in cam.symbols])
+            size_hint: None, None
+            size: 0, 0
+            on_text:
+                text = text_label.text
+                root.get_result(text)
+                text_label.text = ''
