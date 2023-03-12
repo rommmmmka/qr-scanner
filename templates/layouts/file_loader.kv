@@ -1,3 +1,5 @@
+#:import platform kivy.utils.platform
+
 <FileLoader>:
     BoxLayout:
         size: root.size
@@ -5,11 +7,12 @@
         orientation: "vertical"
         FileChooserIconView:
             id: filechooser
+            rootpath: '/storage/emulated/0/' if platform == 'android' else '/'
         BoxLayout:
             size_hint_y: 0.1
             height: 0
             Button:
-                text: "Открыть"
+                text: "Адкрыць"
                 background_color: 'cyan'
                 on_release: root.get_result(filechooser.path, filechooser.selection)
             Button:

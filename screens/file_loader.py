@@ -3,11 +3,12 @@ import os
 from PIL import Image
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
+from kivy import platform
 from pyzbar import pyzbar
 
 
 class FileLoader(Screen):
-    Builder.load_file("layouts/file_loader.kv")
+    Builder.load_file("templates/layouts/file_loader.kv")
 
     def get_result(self, path, file):
         try:

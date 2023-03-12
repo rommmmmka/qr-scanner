@@ -8,21 +8,22 @@ from kivy.uix.screenmanager import Screen
 
 
 class Results(Screen):
-    Builder.load_file("layouts/results.kv")
+    Builder.load_file("templates/layouts/results.kv")
 
     text = StringProperty()
     is_link = BooleanProperty()
 
     def on_enter(self):
         self.is_link = validators.url(self.text)
+
         action_btn = self.ids["action_btn"]
-        action_btn.text = "Перейти по ссылке" if self.is_link else "Скопировать текст"
-        action_btn.size = 0, 0
-        if not self.text:
-            action_btn.size_hint = 0, 0
-            self.text = "Ошибка! Текст не распознан"
-        else:
+        if self.text:
+            action_btn.text = "Перайсці па спасылцы" if self.is_link else "Скапіраваць тэкст"
+            action_btn.size = 0, 0
             action_btn.size_hint = 1, 1
+        else:
+            self.text = "Памылка! QR-код не быў распазнаны"
+            action_btn.size_hint = 0, 0
 
     def action(self):
         if self.is_link:
