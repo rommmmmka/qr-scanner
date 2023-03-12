@@ -18,7 +18,9 @@ class Results(Screen):
 
         action_btn = self.ids["action_btn"]
         if self.text:
-            action_btn.text = "Перайсці па спасылцы" if self.is_link else "Скапіраваць тэкст"
+            action_btn.text = (
+                "Перайсці па спасылцы" if self.is_link else "Скапіраваць тэкст"
+            )
             action_btn.size = 0, 0
             action_btn.size_hint = 1, 1
         else:

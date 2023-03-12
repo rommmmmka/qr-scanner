@@ -18,7 +18,14 @@ class QrScannerApp(App):
 
         if platform == "android":
             from android.permissions import request_permissions, Permission
-            request_permissions([Permission.CAMERA, Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE])
+
+            request_permissions(
+                [
+                    Permission.CAMERA,
+                    Permission.READ_EXTERNAL_STORAGE,
+                    Permission.WRITE_EXTERNAL_STORAGE,
+                ]
+            )
 
         screen_manager = ScreenManager(transition=RiseInTransition())
         cam = Cam(name="cam")
