@@ -41,20 +41,22 @@ requirements =
     android,
     decorator,
     kivy,
+    kivymd,
     libiconv,
     libzbar,
     Pillow,
     python3,
     pyzbar,
     validators,
-    xcamera
+    xcamera,
+    zbarcam
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
 # requirements.source.kivy = ../../kivy
 
 # (str) Presplash of the application
-presplash.filename = %(source.dir)s/images/loading.png
+presplash.filename = %(source.dir)s/resources/images/loading.png
 
 # (str) Icon of the application
 #icon.filename = %(source.dir)s/data/icon.png

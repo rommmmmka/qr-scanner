@@ -23,16 +23,16 @@
         id: filechooser
         rootpath: '/storage/emulated/0/' if platform == 'android' else '/'
 
-    MDFloatLayout:
+    MDAnchorLayout:
+        anchor_x: 'right'
+        anchor_y: 'bottom'
+        padding: 40
 
         MDFloatingActionButton:
             id: button_pick_file
             icon: "check"
             elevation: 0
             disabled: filechooser.selection == []
-            pos: self.parent.width - 75, 20
             on_release:
                 button_pick_file.elevation = 0
-                print(filechooser.path)
-                print(filechooser.selection)
                 root.get_result(filechooser.path, filechooser.selection)

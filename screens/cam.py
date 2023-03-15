@@ -8,10 +8,6 @@ from misc.create_dialog import create_dialog
 
 
 class Cam(Screen):
-    def permissions_callback(self, _permissions, grant_results):
-        if all(grant_results):
-            self.show_camera()
-
     def permissions_check(self):
         if platform == "android":
             from android.permissions import (
@@ -23,16 +19,16 @@ class Cam(Screen):
             if check_permission("android.permission.CAMERA"):
                 self.show_camera()
             else:
-                request_permissions([Permission.CAMERA], self.permissions_callback)
+                request_permissions([Permission.CAMERA])
 
         if platform == "win":
             self.show_camera()
 
     def show_camera(self):
         screen = self.ids.camera_screen
-        screen.remove_widget(self.ids.camera_no_access)
         cam_widget = CamWidget()
         screen.add_widget(cam_widget)
+        screen.remove_widget(self.ids.camera_no_access)
 
 
 class CamWidget(Screen):

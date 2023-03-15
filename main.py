@@ -4,12 +4,12 @@ from kivy.core.window import Window
 from kivy.uix.screenmanager import RiseInTransition, ScreenManager
 from kivy import platform
 
-from controllers.base import Base
+from screens.base import Base
 
-Builder.load_file("templates/file_icon_entry.kv")
-Builder.load_file("templates/base.kv")
-Builder.load_file("templates/cam.kv")
-Builder.load_file("templates/file_picker.kv")
+Builder.load_file("resources/templates/file_icon_entry.kv")
+Builder.load_file("resources/templates/base.kv")
+Builder.load_file("resources/templates/cam.kv")
+Builder.load_file("resources/templates/file_picker.kv")
 
 
 class QrScannerApp(MDApp):

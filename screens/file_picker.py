@@ -4,22 +4,13 @@ import webbrowser
 from PIL import Image
 from kivy import platform
 from kivy.core.clipboard import Clipboard
-from kivy.uix.label import Label
-from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import Screen
-from kivymd.uix.button import MDFlatButton
-from kivymd.uix.dialog import MDDialog
-from kivymd.uix.filemanager import MDFileManager
 from pyzbar import pyzbar
 
 from misc.create_dialog import create_dialog
 
 
 class FilePicker(Screen):
-    def permissions_callback(self, _permissions, grant_results):
-        if all(grant_results):
-            self.show_file_picker()
-
     def permissions_check(self):
         if platform == "android":
             from android.permissions import (
@@ -37,8 +28,7 @@ class FilePicker(Screen):
                     [
                         Permission.READ_EXTERNAL_STORAGE,
                         Permission.WRITE_EXTERNAL_STORAGE,
-                    ],
-                    self.permissions_callback,
+                    ]
                 )
 
         if platform == "win":
