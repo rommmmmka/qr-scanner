@@ -3,7 +3,6 @@ import os
 from PIL import Image
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
-from kivy import platform
 from pyzbar import pyzbar
 
 
