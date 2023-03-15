@@ -1,0 +1,25 @@
+#:import ZBarCam kivy_garden.zbarcam.ZBarCam
+#:import ZBarSymbol pyzbar.pyzbar.ZBarSymbol
+
+<Cam>:
+    MDBoxLayout:
+        id: camera_screen
+
+        MDFloatLayout:
+            id: camera_no_access
+            orientation: "vertical"
+
+            MDRectangleFlatButton:
+                text: "Дазвольце доступ да камеры!"
+                opposite_colors: True
+                pos_hint: {"center_x": .5,"center_y": .5}
+                on_release:
+                    root.permissions_check()
+
+
+<CamWidget>:
+    ZBarCam:
+        id: cam
+        code_types: ZBarSymbol.QRCODE,
+        on_symbols:
+            root.get_result(cam.symbols)

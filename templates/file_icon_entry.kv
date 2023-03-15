@@ -11,6 +11,7 @@
     canvas:
         Color:
             rgba: 1, 1, 1, 1 if self.selected else 0
+
         BorderImage:
             border: 8, 8, 8, 8
             pos: root.pos
@@ -21,8 +22,10 @@
         size: '48dp', '48dp'
         source: 'images/%s.png' % ('folder' if ctx.isdir else 'file')
         pos: root.x + dp(24), root.y + dp(40)
+
     Label:
         text: ctx.name
+        color: 0, 0, 0, 1
         text_size: (root.width, self.height)
         halign: 'center'
         shorten: True
@@ -32,7 +35,7 @@
     Label:
         text: '{}'.format(ctx.get_nice_size())
         font_size: '11sp'
-        color: .8, .8, .8, 1
+        color: 0, 0, 0, 1
         size: '100dp', '16sp'
         pos: root.pos
         halign: 'center'

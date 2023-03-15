@@ -1,0 +1,38 @@
+#:import platform kivy.utils.platform
+
+<FilePicker>:
+    MDBoxLayout:
+        id: file_picker_screen
+
+        MDFloatLayout:
+            id: files_no_access
+            orientation: "vertical"
+
+            MDRectangleFlatButton:
+                text: "Дазвольце доступ да файлавай сістэмы!"
+                opposite_colors: True
+                pos_hint: {"center_x": .5,"center_y": .5}
+                on_release:
+                    root.permissions_check()
+
+
+<FilePickerWidget>:
+    id: float_layout
+
+    FileChooserIconView:
+        id: filechooser
+        rootpath: '/storage/emulated/0/' if platform == 'android' else '/'
+
+    MDFloatLayout:
+
+        MDFloatingActionButton:
+            id: button_pick_file
+            icon: "check"
+            elevation: 0
+            disabled: filechooser.selection == []
+            pos: self.parent.width - 75, 20
+            on_release:
+                button_pick_file.elevation = 0
+                print(filechooser.path)
+                print(filechooser.selection)
+                root.get_result(filechooser.path, filechooser.selection)
